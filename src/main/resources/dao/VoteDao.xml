@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.VoteDao">
+
+    <select id="verifyUserExist" resultType="integer">
+        SELECT count(*) FROM accounts WHERE name=#{username}
+    </select>
+    <update id="giveACashByUsername">
+        update accounts set ACash=ifnull(ACash,0)+#{totalCash} where name=#{username}
+    </update>
+    <select id="levelLimitCheck" resultType="java.lang.Integer">
+        SELECT ifnull(MAX(level),0) FROM accounts
+        left JOIN characters c ON c.accountid=accounts.id
+        WHERE accounts.name=#{username}
+    </select>
+</mapper>

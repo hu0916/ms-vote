@@ -1,0 +1,27 @@
+server:
+#  端口号
+  port: 8004
+
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/v079?characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+  mapper-locations:
+  - classpath:dao/*.xml
+  - classpath*:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+#基础签到奖励baseReward 8000 连续签到奖励plusReward 500 最大值max levelLimit等级限制 -1为不限制 gapTime投票间隔时间和cd时间
+reward:
+  baseReward: 300
+  plusReward: 100
+  maxReward: 500
+  levelLimit: -1
+  gapTime: 22
+logging:
+  config: ./src/main/resources/logback.xml
